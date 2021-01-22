@@ -41,6 +41,7 @@ Plug 'leafgarland/typescript-vim' " syntax highlighting for vim
 Plug 'Shougo/unite.vim'
 Plug 'mattn/emmet-vim'
 Plug 'junegunn/fzf'
+Plug 'tkztmk/vim-vala'
 Plug 'vim-scripts/taglist.vim'
 Plug 'Borwe/vim-ide-file' " own ide plugin, (WIP)
 Plug 'Borwe/vim-vimrc-refresher' "For automatically refreshing vim
@@ -148,6 +149,7 @@ augroup set_file_types
     "reset to null if exists before
     autocmd!
     "set filetypes
+    autocmd BufEnter,BufNewFile *.vala :setlocal filetype=vala "set ts files to typescript
     autocmd BufEnter,BufNewFile *.ts :setlocal filetype=typescript "set ts files to typescript
     autocmd BufEnter,BufNewFile *vimrc :setlocal filetype=vim "set all files with postfix of 'vimrc' to be detected as vim files
 augroup END
@@ -287,7 +289,10 @@ let g:ycm_language_server =[
 \   'filetypes':['cmake'],
 \   'cmdline': ['cmake-language-server']
 \ },
-\
+\ {'name':'vala',
+\    'filetypes': ['vala','genie'],
+\    'cmdline': ['vala-language-server']
+\ },
 \ { 'name': 'angular',
 \     'cmdline': [ 'node' ,
 \     expand( s:lsp . '/angular/node_modules/@angular/language-server' ),
