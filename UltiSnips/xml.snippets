@@ -1,0 +1,22 @@
+snippet xml_standard_eos "Set XML top for eOS apps"
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+	${0}
+</schemalist>
+endsnippet
+
+snippet xml_schema_eos "Create a schema"
+<schema path="${1:path_id_of_application}" id="$1">
+</schema>
+endsnippet
+
+snippet xml_key_eos "For Elemenetary OS keys of Schema"
+	<key name="${1:enter_a_name}" type="${2:enter_a_type}">
+		<default>${3:enter_default_value}</default>
+		<summary>${4:enter_short_summary}</summary>
+		<description>${5:enter_description}</description>
+	</key>
+endsnippet
+
+
+

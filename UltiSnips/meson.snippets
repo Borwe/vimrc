@@ -1,0 +1,16 @@
+snippet install_data "Install data to application"
+install_data(
+	'${1:xml_file_location}',
+	install_dir: join_paths(get_option('datadir'),'glib-2.0','schemas'),
+	rename: meson.project_name()+'.$1'
+)
+endsnippet
+
+snippet subdir "include subdirectory"
+subdir('${1:enter_sub_dir}')
+endsnippet
+
+snippet install_script "Add installation script"
+meson.add_install_script('${1:location_of_script}')
+endsnippet
+
