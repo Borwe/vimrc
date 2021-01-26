@@ -284,7 +284,10 @@ let g:ycm_language_server =[
 \ 'filetypes': [ 'vim' ],
 \ 'cmdline': [ expand( s:lsp . '/viml/node_modules/.bin/vim-language-server' ), '--stdio' ]
 \ },
-\
+\ { 'name': 'docker',
+\   'filetypes': ['dockerfile'],
+\   'cmdline':[expand(s:lsp . '/docker/node_modules/.bin/docker-langserver'), '--stdio']
+\ },
 \ {'name':'cmake',
 \   'filetypes':['cmake'],
 \   'cmdline': ['cmake-language-server']
