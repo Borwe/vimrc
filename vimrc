@@ -225,18 +225,27 @@ command! Buff call SelectBuffer()
 
 "for LSP completion with YouCompleteMe
 
+function! SetupGoToDefinitionYCM()
+    let fileType=&ft
+    if fileType != 'help'
+        nnoremap <C-]> :YcmCompleter GoToDefinition<CR>
+    else
+        nnoremap <C-]> :exec "tag ".expand('<cword>')<CR>
+    endif
+endfunction()
+
 "go to definition from ycmCompleter in a new tab
-:nnoremap <C-]> :YcmCompleter GoToDefinition<CR>
+autocmd BufEnter * call SetupGoToDefinitionYCM()
 "go to include from ycmCompleter in a new tab
-:nnoremap <C-I>:YcmCompleter GoToInclude<CR>
+nnoremap <C-I>:YcmCompleter GoToInclude<CR>
 "go to declaration from ycmCompleter in a new tab
-:nnoremap <C-d> :YcmCompleter GoToDeclaration<CR>
+nnoremap <C-D> :YcmCompleter GoToDeclaration<CR>
 "go to implementation 
-:nnoremap <C-i> :YcmCompleter GoToImplementation<CR>
+nnoremap <C-i> :YcmCompleter GoToImplementation<CR>
 "show errors
 nnoremap <C-x> :YcmDiags<CR>
 "pop up hover info
-:nmap D <Plug>(YCMHover)
+nmap D <Plug>(YCMHover)
 
 "Command to fix errors with YCM
 nnoremap fix :YcmCompleter FixIt<CR>
@@ -255,6 +264,8 @@ command! Rename call RenameThingsFunction()
 
 "for ycm warning symbal
 let g:syntastic_warning_symbol="$$"
+" disable ucm on vim help
+let g:ycm_filetype_blacklist={'help':1}
 "for ycm hiding window docs
 let g:ycm_autoclose_preview_window_after_insertion=1
 "for ycm have 1000+ candidates for completions
