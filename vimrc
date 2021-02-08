@@ -37,6 +37,7 @@ Plug 'ycm-core/YouCompleteMe'
 Plug 'ycm-core/lsp-examples'
 Plug 'morhetz/gruvbox' " Color scheme 
 Plug 'dracula/vim',{'as':'dracula'}  " Color scheme
+Plug 'jordwalke/vim-taste' " Color scheme
 Plug 'leafgarland/typescript-vim' " syntax highlighting for vim
 Plug 'Shougo/unite.vim'
 Plug 'mattn/emmet-vim'
@@ -65,7 +66,7 @@ endif
 " turn on this option as well
 set background=dark
 " set termguicolors
-colorscheme dracula
+colorscheme taste
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
@@ -85,6 +86,9 @@ if s:OS_win32
 else
     set guifont=Ubuntu\ Mono\ 11
 endif
+" remove gui options
+set guioptions-=m
+set guioptions-=T
 
 
 
@@ -287,7 +291,7 @@ else
 endif
 
 "set AirLine theme
-let g:airline_theme='fairyfloss'
+let g:airline_theme='taste'
 
 let s:lsp='~/'.vimLocationHome.'/plugged/lsp-examples'
 let g:ycm_language_server =[
