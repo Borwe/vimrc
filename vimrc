@@ -95,7 +95,7 @@ set guioptions-=T
 " The following are commented out as they cause vim to behave a lot
 " differently from regular Vi. They are highly recommended though.
 set showcmd		" Show (partial) command in status line.
-set cmdheight=2 " the size of the command line at bottom 
+"set cmdheight=2 " the size of the command line at bottom 
 set showmatch		" Show matching brackets.
 "set ignorecase		" Do case insensitive matching
 "set smartcase		" Do smart case matching
@@ -143,10 +143,10 @@ inoremap [ []<C-[>i
 inoremap ( ()<C-[>i
 
 " setup for ultisnips
-let g:UltiSnipsExpandTrigger="<c-b>"
+let g:UltiSnipsExpandTrigger="<c-e>"
 let g:UltiSnipsListSnippets="<A-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-u>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 "group for setting filetypes
 augroup set_file_types
