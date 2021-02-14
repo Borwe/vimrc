@@ -29,15 +29,15 @@ call plug#begin()
 " let Vundle manage Vundle, required
 Plug 'VundleVim/Vundle.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'Yggdroot/duoduo'
+"Plug 'Yggdroot/duoduo'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'   "for git and info on airline
 Plug 'ycm-core/YouCompleteMe'
 Plug 'ycm-core/lsp-examples'
-Plug 'morhetz/gruvbox' " Color scheme 
-Plug 'dracula/vim',{'as':'dracula'}  " Color scheme
-Plug 'jordwalke/vim-taste' " Color scheme
+"Plug 'morhetz/gruvbox' " Color scheme 
+"Plug 'dracula/vim',{'as':'dracula'}  " Color scheme
+"Plug 'jordwalke/vim-taste' " Color scheme
 Plug 'leafgarland/typescript-vim' " syntax highlighting for vim
 Plug 'Shougo/unite.vim'
 Plug 'mattn/emmet-vim'
@@ -64,9 +64,8 @@ endif
 
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
-set background=dark
-" set termguicolors
-colorscheme taste
+set background=light
+colorscheme default
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
@@ -291,7 +290,7 @@ else
 endif
 
 "set AirLine theme
-let g:airline_theme='taste'
+"let g:airline_theme='taste'
 
 let s:lsp='~/'.vimLocationHome.'/plugged/lsp-examples'
 let g:ycm_language_server =[
