@@ -64,8 +64,8 @@ endif
 
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
-set background=light
-colorscheme default
+set background=dark
+colorscheme industry
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
@@ -201,7 +201,7 @@ endfunction
 " for setting up java tool options, appended to the default system ones, but
 " with lombok support
 "let $JAVA_TOOL_OPTIONS=$JAVA_TOOL_OPTIONS.' -javaagent:/home/brian/vim-setup/vimrc/lombok.jar '
-let $JAVA_TOOL_OPTIONS=$JAVA_TOOL_OPTIONS
+"let $JAVA_TOOL_OPTIONS=$JAVA_TOOL_OPTIONS
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
@@ -228,27 +228,20 @@ command! Buff call SelectBuffer()
 
 "for LSP completion with YouCompleteMe
 
-function! SetupGoToDefinitionYCM()
-    let fileType=&ft
-    if fileType != 'help'
-        nnoremap <C-]> :YcmCompleter GoToDefinition<CR>
-    else
-        nnoremap <C-]> :exec "tag ".expand('<cword>')<CR>
-    endif
-endfunction()
-
 "go to definition from ycmCompleter in a new tab
-autocmd BufEnter * call SetupGoToDefinitionYCM()
+nnoremap <Space>n :YcmCompleter GoToDefinition<CR>
 "go to include from ycmCompleter in a new tab
-nnoremap <C-I>:YcmCompleter GoToInclude<CR>
+nnoremap <Space>i :YcmCompleter GoToInclude<CR>
 "go to declaration from ycmCompleter in a new tab
-nnoremap <C-D> :YcmCompleter GoToDeclaration<CR>
+nnoremap <Space>d :YcmCompleter GoToDeclaration<CR>
 "go to implementation 
-nnoremap <C-i> :YcmCompleter GoToImplementation<CR>
+nnoremap <Space>m :YcmCompleter GoToImplementation<CR>
 "show errors
-nnoremap <C-x> :YcmDiags<CR>
+nnoremap <Space>x :YcmDiags<CR>
 "pop up hover info
-nmap D <Plug>(YCMHover)
+nmap <Space>z <Plug>(YCMHover)
+"go back
+nnoremap <Space>b <C-o>
 
 "Command to fix errors with YCM
 nnoremap fix :YcmCompleter FixIt<CR>
@@ -301,6 +294,10 @@ let g:ycm_language_server =[
 \ { 'name': 'docker',
 \   'filetypes': ['dockerfile'],
 \   'cmdline':[expand(s:lsp . '/docker/node_modules/.bin/docker-langserver'), '--stdio']
+\ },
+\ { 'name':'vala-language-server',
+\  'filetypes':['vala','genie'],
+\  'cmdline': [ 'vala-language-server']
 \ },
 \ {'name':'cmake',
 \   'filetypes':['cmake'],
