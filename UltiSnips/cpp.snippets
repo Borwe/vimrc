@@ -37,6 +37,14 @@ snippet headers "Setup header file"
 #endif
 endsnippet
 
+snippet catch2 "Setup for catch2"
+#define CATCH_CONFIG_MAIN
+#include <catch.hpp>
+
+TEST_CASE("${1:Short definition}","[${2:tags}]"){
+}
+endsnippet
+
 snippet boost_dyn "Dynamic Boost Testing"
 #define BOOST_TEST_MODULE ${1:test_module_name}
 #define BOOST_TEST_DYN_LINK
