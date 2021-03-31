@@ -50,6 +50,7 @@ Plug 'SirVer/ultisnips' "for snippets
 Plug 'vim/killersheep' "game
 Plug 'vim-test/vim-test' "for running tests
 Plug 'mhinz/vim-startify' " start screen"
+Plug 'ararslan/license-to-vim' " for licenses
 
 call plug#end()
 
@@ -225,6 +226,10 @@ function! SelectBuffer()
     :exec "buffer " buffNum
 endfunction
 command! Buff call SelectBuffer()
+
+" For licenses support
+let g:license_author= 'Brian Orwe'
+let g:license_email= 'brian.orwe@gmail.com'
 
 "for LSP completion with YouCompleteMe
 

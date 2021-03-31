@@ -18,5 +18,17 @@ snippet xml_key_eos "For Elemenetary OS keys of Schema"
 	</key>
 endsnippet
 
-
+snippet eos_appdata "Create .appdata.xml template"
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2019 Your Name <you@email.com> -->
+<component type="desktop">
+  <id>${1:app_executable_name}</id>
+  <metadata_license>CC0</metadata_license>
+  <name>${2:Your App's Name}</name>
+  <summary>${3:A Catchy Tagline}</summary>
+  <description>
+    <p>${4:A description}</p>
+  </description>
+</component>
+endsnippet
 
