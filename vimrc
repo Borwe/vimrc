@@ -17,24 +17,40 @@ set nocompatible              " be iMproved, required
 " Get OS
 let s:OS_win32=has('win32')
 
-"for LSP completion with YouCompleteMe
-let vimLocationHome='.vim'
+"for LSP completion with YouCompleteMe and setting up viminfo
+let s:vim_location_home='.vim'
 if s:OS_win32
-   let vimLocationHome='vimfiles'
+   let s:vim_location_home='vimfiles'
 endif
+
+"for creating and setting up vimfinfo
+function! SetupVimInfo()
+    let viminfo_dir = $HOME .'/'. s:vim_location_home . "/files/info"
+    if( isdirectory( viminfo_dir ) == v:false )
+        call mkdir("info", $HOME .'/'. s:vim_location_home . "/files")
+    endif
+
+    let viminfo_file = viminfo_dir . "/viminfo"
+    if( filereadable( viminfo_file ) == v:false)
+        let blank=[]
+        call writefile( blank, viminfo_file)
+    endif
+
+    exec "set viminfo='100,n".viminfo_file
+endfunction
+call SetupVimInfo()
 
 " set the runtime path to include Vundle and initialize
 call plug#begin()
 
 " let Vundle manage Vundle, required
-Plug 'VundleVim/Vundle.vim'
 Plug 'scrooloose/nerdtree'
 "Plug 'Yggdroot/duoduo'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'   "for git and info on airline
-Plug 'ycm-core/YouCompleteMe'
-Plug 'ycm-core/lsp-examples'
+Plug 'Borwe/YouCompleteMe'
+Plug 'Borwe/lsp-examples'
 "Plug 'morhetz/gruvbox' " Color scheme 
 "Plug 'dracula/vim',{'as':'dracula'}  " Color scheme
 "Plug 'jordwalke/vim-taste' " Color scheme
@@ -120,7 +136,7 @@ set wildmenu 	" Display all matching files when we tab complete
 set backspace=2 " for allowing deletion with backspace
 
 "for opening ~/.vimrc
-nnoremap vrc :exec "edit ".getenv("HOME")."/".vimLocationHome."/vimrc"<CR>
+nnoremap vrc :exec "edit ".getenv("HOME")."/" . s:vim_location_home . "/vimrc"<CR>
 
 "for opening up terminal
 if s:OS_win32
@@ -290,7 +306,7 @@ endif
 "set AirLine theme
 "let g:airline_theme='taste'
 
-let s:lsp='~/'.vimLocationHome.'/plugged/lsp-examples'
+let s:lsp='~/'.s:vim_location_home.'/plugged/lsp-examples'
 let g:ycm_language_server =[
 \ { 'name': 'vim',
 \ 'filetypes': [ 'vim' ],

@@ -2,3 +2,6 @@
 plugged/
 autoload/
 session/
+
+#viminfo file
+files/info/viminfo
