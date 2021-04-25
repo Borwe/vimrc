@@ -136,7 +136,7 @@ set wildmenu 	" Display all matching files when we tab complete
 set backspace=2 " for allowing deletion with backspace
 
 "for opening ~/.vimrc
-nnoremap vrc :exec "edit ".getenv("HOME")."/" . s:vim_location_home . "/vimrc"<CR>
+nnoremap vrc :exec "edit ".$MYVIMRC<CR>
 
 "for opening up terminal
 if s:OS_win32
