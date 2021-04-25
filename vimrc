@@ -307,6 +307,10 @@ endif
 "let g:airline_theme='taste'
 
 let s:lsp='~/'.s:vim_location_home.'/plugged/lsp-examples'
+let s:pip_os_dir = 'bin'
+if has('win32')
+  let s:pip_os_dir = 'Scripts'
+end
 let g:ycm_language_server =[
 \ { 'name': 'vim',
 \ 'filetypes': [ 'vim' ],
@@ -322,7 +326,7 @@ let g:ycm_language_server =[
 \ },
 \ {'name':'cmake',
 \   'filetypes':['cmake'],
-\   'cmdline': ['cmake-language-server']
+\   'cmdline': [ expand( s:lsp . '/cmake/venv/' . s:pip_os_dir . '/cmake-language-server' )]
 \ },
 \ {'name':'vala',
 \    'filetypes': ['vala','genie'],
