@@ -23,28 +23,11 @@ if s:OS_win32
    let s:vim_location_home='vimfiles'
 endif
 
-"for creating and setting up vimfinfo
-function! SetupVimInfo()
-    let viminfo_dir = $HOME .'/'. s:vim_location_home . "/files/info"
-    if( isdirectory( viminfo_dir ) == v:false )
-        call mkdir("info", $HOME .'/'. s:vim_location_home . "/files")
-    endif
-
-    let viminfo_file = viminfo_dir . "/viminfo"
-    if( filereadable( viminfo_file ) == v:false)
-        let blank=[]
-        call writefile( blank, viminfo_file)
-    endif
-
-    exec "set viminfo='100,n".viminfo_file
-endfunction
-call SetupVimInfo()
-
 " set the runtime path to include Vundle and initialize
 call plug#begin()
 
-" let Vundle manage Vundle, required
 Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-sleuth'
 "Plug 'Yggdroot/duoduo'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -278,6 +261,9 @@ function! RenameThingsFunction()
 endfunction
 command! Rename call RenameThingsFunction()
 
+" for vim-ide-file plugin for cpp cmake_module_path
+let g:ide_cmake_module_path=$HOME."/.local"
+
 
 "for ycm warning symbal
 let g:syntastic_warning_symbol="$$"
@@ -315,6 +301,10 @@ let g:ycm_language_server =[
 \ { 'name': 'vim',
 \ 'filetypes': [ 'vim' ],
 \ 'cmdline': [ expand( s:lsp . '/viml/node_modules/.bin/vim-language-server' ), '--stdio' ]
+\ },
+\ { 'name': 'bash',
+\ 'filetypes': [ 'sh', 'bash' ],
+\ 'cmdline': [ 'node', expand( s:lsp . '/bash/node_modules/.bin/bash-language-server' ), 'start' ]
 \ },
 \ { 'name': 'docker',
 \   'filetypes': ['dockerfile'],
