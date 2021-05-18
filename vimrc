@@ -26,6 +26,7 @@ endif
 " set the runtime path to include Vundle and initialize
 call plug#begin()
 
+Plug 'junegunn/vim-plug'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-sleuth'
 "Plug 'Yggdroot/duoduo'
@@ -35,7 +36,7 @@ Plug 'tpope/vim-fugitive'   "for git and info on airline
 Plug 'Borwe/YouCompleteMe'
 Plug 'Borwe/lsp-examples'
 "Plug 'morhetz/gruvbox' " Color scheme 
-"Plug 'dracula/vim',{'as':'dracula'}  " Color scheme
+Plug 'dracula/vim',{'as':'dracula'}  " Color scheme
 "Plug 'jordwalke/vim-taste' " Color scheme
 Plug 'leafgarland/typescript-vim' " syntax highlighting for vim
 Plug 'Shougo/unite.vim'
@@ -53,6 +54,9 @@ Plug 'ararslan/license-to-vim' " for licenses
 
 call plug#end()
 
+" make vimplug do full clone
+let g:plug_shallow=0
+
 
 filetype plugin indent on    " required
 
@@ -65,7 +69,7 @@ endif
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
 set background=dark
-colorscheme industry
+colorscheme dracula
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
@@ -83,7 +87,7 @@ endif
 if s:OS_win32
     set guifont=Consolas:h10:cANSI:qDRAFT
 else
-    set guifont=Ubuntu\ Mono\ 11
+    set guifont=DejaVu\ Sans\ Mono\ 9
 endif
 " remove gui options
 set guioptions-=m
@@ -100,7 +104,7 @@ set showmatch		" Show matching brackets.
 "set smartcase		" Do smart case matching
 set incsearch		" Incremental search
 "set autowrite		" Automatically save before commands like :next and :make
-"set hidden		" Hide buffers when they are abandoned
+set hidden		" Hide buffers when they are abandoned
 "set mouse=a		" Enable mouse usage (all modes)
 set number		" Set numbering
 set relativenumber "show numbering relative to position
@@ -157,13 +161,12 @@ augroup set_file_types
     autocmd BufEnter,BufNewFile *vimrc :setlocal filetype=vim "set all files with postfix of 'vimrc' to be detected as vim files
 augroup END
 
-"Set filetype to be angular
-function! SetAngularFileType()
-    :echom "Setting filetype to be angular for easy completions"
-    :setlocal filetype=angular
+" fucntion for searching fortodos from parent directory
+function! s:SearchToDos()abort
+    vimgrep /TODO\|todo/g ./*
+    exec "copen"
 endfunction
-command! SetAngular :call SetAngularFileType()
-nnoremap angit :SetAngular
+command! SeeToDos :call s:SearchToDos()<CR>
 
 "Command for enabling tags for jumping through code
 command! MakeTags :!ctags -R
@@ -277,6 +280,8 @@ let g:ycm_max_num_candidates = 1000
 let g:ycm_auto_hover=""
 " for ycm logging
 let g:ycm_log_level='debug'
+" for ycm turn off dialog prompt
+let g:ycm_confirm_extra_conf = 0
 
 "For c++ youcompleteme support
 " check if .bin/.ycm_extra_conf.py exists
@@ -290,7 +295,7 @@ else
 endif
 
 "set AirLine theme
-"let g:airline_theme='taste'
+let g:airline_theme='dracula'
 
 let s:lsp='~/'.s:vim_location_home.'/plugged/lsp-examples'
 let s:pip_os_dir = 'bin'
