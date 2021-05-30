@@ -72,3 +72,16 @@ BOOST_AUTO_TEST_CASE(${2:case_name}){
 	${0://write auto test}
 }
 endsnippet
+
+snippet export_header "For exporting headers support on windows"
+#if defined (WIN32) && defined (BUILD_SHARED_LIBS)
+	#if defined(${1:LIB_NAME}_EXPORT)
+		#define  $1_EXPORT __declspec(dllexport)
+	#else
+		#define  $1_EXPORT __declspec(dllimport)
+	#endif
+#else
+#define $1_EXPORT
+#endif
+endsnippet
+

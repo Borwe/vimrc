@@ -266,6 +266,8 @@ command! Rename call RenameThingsFunction()
 
 " for vim-ide-file plugin for cpp cmake_module_path
 let g:ide_cmake_module_path=$HOME."/.local"
+let g:ide_cmake_generator="Ninja"
+let g:ide_cpp_vcvars='vcvars64'
 
 
 "for ycm warning symbal
@@ -302,6 +304,11 @@ let s:pip_os_dir = 'bin'
 if has('win32')
   let s:pip_os_dir = 'Scripts'
 end
+if has('win32')
+  let s:extent = '.exe'
+else
+  let s:extent = ''
+endif
 let g:ycm_language_server =[
 \ { 'name': 'vim',
 \ 'filetypes': [ 'vim' ],
@@ -321,11 +328,16 @@ let g:ycm_language_server =[
 \ },
 \ {'name':'cmake',
 \   'filetypes':['cmake'],
-\   'cmdline': [ expand( s:lsp . '/cmake/venv/' . s:pip_os_dir . '/cmake-language-server' )]
+\   'cmdline': [ expand( s:lsp . '/cmake/venv/' . s:pip_os_dir . '/cmake-language-server' . s:extent )]
 \ },
 \ {'name':'vala',
 \    'filetypes': ['vala','genie'],
 \    'cmdline': ['vala-language-server']
+\ },
+\ {'name':'groovy',
+\     'cmdline': ['java','-jar',expand(s:lsp . 
+\ '/groovy/groovy-language-server/build/libs/groovy-language-server-all.jar')],
+\      'filetypes': ['groovy']
 \ },
 \ { 'name': 'angular',
 \     'cmdline': [ 'node' ,
