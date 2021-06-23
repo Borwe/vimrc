@@ -245,6 +245,8 @@ nnoremap <Space>d :YcmCompleter GoToDeclaration<CR>
 nnoremap <Space>m :YcmCompleter GoToImplementation<CR>
 "show errors
 nnoremap <Space>x :YcmDiags<CR>
+" restart ycm
+nnoremap <Space>r :YcmRestartServer<CR>
 "pop up hover info
 nmap <Space>z <Plug>(YCMHover)
 "go back
