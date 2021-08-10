@@ -30,10 +30,12 @@ Plug 'junegunn/vim-plug'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-sleuth'
 "Plug 'Yggdroot/duoduo'
+Plug '/vim-scripts/DrawIt' " Drawit plugin
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'   "for git and info on airline
 Plug 'Borwe/YouCompleteMe'
+Plug 'Borwe/vim-git-walk'
 Plug 'Borwe/lsp-examples'
 "Plug 'morhetz/gruvbox' " Color scheme 
 Plug 'dracula/vim',{'as':'dracula'}  " Color scheme
@@ -51,6 +53,7 @@ Plug 'vim/killersheep' "game
 Plug 'vim-test/vim-test' "for running tests
 Plug 'mhinz/vim-startify' " start screen"
 Plug 'ararslan/license-to-vim' " for licenses
+Plug 'wakatime/vim-wakatime' " wakatime
 
 call plug#end()
 
@@ -126,13 +129,8 @@ set backspace=2 " for allowing deletion with backspace
 nnoremap vrc :exec "edit ".$MYVIMRC<CR>
 
 "for opening up terminal
-if s:OS_win32
-        nnoremap term :belowright terminal powershell<CR>
-        nnoremap vterm :vertical terminal powershell<CR>
-else
-        nnoremap term :belowright terminal<CR>
-        nnoremap vterm :vertical terminal<CR>
-endif
+nnoremap term :belowright terminal<CR>
+nnoremap vterm :vertical terminal<CR>
 "for exiting insert mode on terminal on vim
 tnoremap <C-e> <C-\><C-N>
 "for quiting all together
