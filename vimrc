@@ -29,31 +29,26 @@ call plug#begin()
 Plug 'junegunn/vim-plug'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-sleuth'
-"Plug 'Yggdroot/duoduo'
 Plug '/vim-scripts/DrawIt' " Drawit plugin
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'   "for git and info on airline
 Plug 'Borwe/YouCompleteMe'
-Plug 'Borwe/vim-git-walk'
 Plug 'Borwe/lsp-examples'
 "Plug 'morhetz/gruvbox' " Color scheme 
 Plug 'dracula/vim',{'as':'dracula'}  " Color scheme
 "Plug 'jordwalke/vim-taste' " Color scheme
 Plug 'leafgarland/typescript-vim' " syntax highlighting for vim
-Plug 'Shougo/unite.vim'
 Plug 'mattn/emmet-vim'
 Plug 'junegunn/fzf'
 Plug 'tkztmk/vim-vala'
 Plug 'vim-scripts/taglist.vim'
-Plug 'Borwe/vim-ide-file' " own ide plugin, (WIP)
 Plug 'Borwe/vim-vimrc-refresher' "For automatically refreshing vim
 Plug 'SirVer/ultisnips' "for snippets
 Plug 'vim/killersheep' "game
-Plug 'vim-test/vim-test' "for running tests
-Plug 'mhinz/vim-startify' " start screen"
-Plug 'ararslan/license-to-vim' " for licenses
-Plug 'wakatime/vim-wakatime' " wakatime
+Plug 'mhinz/vim-startify' " start screen
+Plug 'borwe/license-to-vim' " for licenses
+Plug 'Borwe/vim-code-runner' "for running
+"Plug 'wakatime/vim-wakatime' " wakatime
 
 call plug#end()
 
@@ -72,7 +67,7 @@ endif
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
 set background=dark
-colorscheme dracula
+"colorscheme desert
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
