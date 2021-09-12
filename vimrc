@@ -29,6 +29,7 @@ call plug#begin()
 Plug 'junegunn/vim-plug'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-sleuth'
+Plug 'vim-airline/vim-airline'
 Plug '/vim-scripts/DrawIt' " Drawit plugin
 Plug 'tpope/vim-fugitive'   "for git and info on airline
 Plug 'Borwe/YouCompleteMe'
@@ -114,6 +115,7 @@ set foldmethod=syntax   " for folding code based on syntax
 set path+=**	" Search down the subfolders
 set wildmenu 	" Display all matching files when we tab complete
 set backspace=2 " for allowing deletion with backspace
+set laststatus=2 " always show status line
 
 "for opening ~/.vimrc
 nnoremap vrc :exec "edit ".$MYVIMRC<CR>
