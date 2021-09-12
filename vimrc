@@ -18,9 +18,9 @@ set nocompatible              " be iMproved, required
 let s:OS_win32=has('win32')
 
 "for LSP completion with YouCompleteMe and setting up viminfo
-let s:vim_location_home='.vim'
+let s:vim_location_home=$HOME.'/.vim'
 if s:OS_win32
-   let s:vim_location_home='vimfiles'
+   let s:vim_location_home=$HOME.'/vimfiles'
 endif
 
 " set the runtime path to include Vundle and initialize
@@ -35,14 +35,9 @@ Plug 'tpope/vim-fugitive'   "for git and info on airline
 Plug 'Borwe/YouCompleteMe'
 Plug 'Borwe/lsp-examples'
 "Plug 'morhetz/gruvbox' " Color scheme 
-Plug 'dracula/vim',{'as':'dracula'}  " Color scheme
-"Plug 'jordwalke/vim-taste' " Color scheme
 Plug 'leafgarland/typescript-vim' " syntax highlighting for vim
 Plug 'mattn/emmet-vim'
 Plug 'junegunn/fzf'
-Plug 'tkztmk/vim-vala'
-Plug 'vim-scripts/taglist.vim'
-Plug 'Borwe/vim-vimrc-refresher' "For automatically refreshing vim
 Plug 'SirVer/ultisnips' "for snippets
 Plug 'vim/killersheep' "game
 Plug 'mhinz/vim-startify' " start screen
@@ -66,8 +61,8 @@ endif
 
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
-set background=dark
-"colorscheme desert
+"set background=dark
+colorscheme desert
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
@@ -87,6 +82,7 @@ if s:OS_win32
 else
     set guifont=DejaVu\ Sans\ Mono\ 9
 endif
+
 " remove gui options
 set guioptions-=m
 set guioptions-=T
@@ -122,6 +118,13 @@ set backspace=2 " for allowing deletion with backspace
 
 "for opening ~/.vimrc
 nnoremap vrc :exec "edit ".$MYVIMRC<CR>
+
+" for moving to install dir
+if s:OS_win32
+  nnoremap vch :exec "tchdir ".$HOME."/vimfiles"<CR>
+else
+  nnoremap vch :exec "tchdir ".$HOME."/.vim"<CR>
+end
 
 "for opening up terminal
 nnoremap term :belowright terminal<CR>
@@ -291,10 +294,7 @@ else
     :let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
 endif
 
-"set AirLine theme
-let g:airline_theme='dracula'
-
-let s:lsp='~/'.s:vim_location_home.'/plugged/lsp-examples'
+let s:lsp=s:vim_location_home.'/plugged/lsp-examples'
 let s:pip_os_dir = 'bin'
 if has('win32')
   let s:pip_os_dir = 'Scripts'
