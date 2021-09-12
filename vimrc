@@ -30,7 +30,6 @@ Plug 'junegunn/vim-plug'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-sleuth'
 Plug '/vim-scripts/DrawIt' " Drawit plugin
-Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-fugitive'   "for git and info on airline
 Plug 'Borwe/YouCompleteMe'
 Plug 'Borwe/lsp-examples'
@@ -43,6 +42,7 @@ Plug 'vim/killersheep' "game
 Plug 'mhinz/vim-startify' " start screen
 Plug 'borwe/license-to-vim' " for licenses
 Plug 'Borwe/vim-code-runner' "for running
+Plug 'camspiers/lens.vim' " for window resizing
 "Plug 'wakatime/vim-wakatime' " wakatime
 
 call plug#end()
@@ -99,7 +99,6 @@ set showmatch		" Show matching brackets.
 set incsearch		" Incremental search
 "set autowrite		" Automatically save before commands like :next and :make
 set hidden		" Hide buffers when they are abandoned
-"set mouse=a		" Enable mouse usage (all modes)
 set number		" Set numbering
 set relativenumber "show numbering relative to position
 set autoindent
@@ -151,8 +150,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 augroup set_file_types
     "reset to null if exists before
     autocmd!
-    "set filetypes
-    autocmd BufEnter,BufNewFile *.vala :setlocal filetype=vala "set ts files to typescript
     autocmd BufEnter,BufNewFile *.ts :setlocal filetype=typescript "set ts files to typescript
     autocmd BufEnter,BufNewFile *vimrc :setlocal filetype=vim "set all files with postfix of 'vimrc' to be detected as vim files
 augroup END
@@ -163,9 +160,6 @@ function! s:SearchToDos()abort
     exec "copen"
 endfunction
 command! SeeToDos :call s:SearchToDos()<CR>
-
-"Command for enabling tags for jumping through code
-command! MakeTags :!ctags -R
 
 "Command for showing fzf
 nnoremap <C-f> :<C-u>FZF<CR>
@@ -186,16 +180,6 @@ nnoremap ntree :NERDTree<CR>
 if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local
 endif
-
-
-"hand displaying/hiding taglist
-let Tlist_GainFocus_On_ToggleOpen = 1
-let Tlist_Show_One_File = 1 "set tags to only show based on current viewed buffer/file
-function! TagListToggle()
-    :TlistToggle
-endfunction
-:nnoremap tag <Esc>:call TagListToggle()<CR>
-
 
 " for setting up java tool options, appended to the default system ones, but
 " with lombok support
@@ -287,12 +271,12 @@ let g:ycm_confirm_extra_conf = 0
 " check if .bin/.ycm_extra_conf.py exists
 " if so, then map g:ycm_global_ycm_extra_conf to it
 " else skip and use the default
-if filereadable('~/vim-setup/vimrc/.ycm_extra_conf.py')
-    :let g:ycm_global_ycm_extra_conf ='~/vim-setup/vimrc/.ycm_extra_conf.py'
-else
-    "THE DEFAULT FROM YCM
-    :let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
-endif
+"if filereadable('~/vim-setup/vimrc/.ycm_extra_conf.py')
+"    :let g:ycm_global_ycm_extra_conf ='~/vim-setup/vimrc/.ycm_extra_conf.py'
+"else
+"    "THE DEFAULT FROM YCM
+"    :let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
+"endif
 
 let s:lsp=s:vim_location_home.'/plugged/lsp-examples'
 let s:pip_os_dir = 'bin'
