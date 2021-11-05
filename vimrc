@@ -44,7 +44,7 @@ Plug 'mhinz/vim-startify' " start screen
 Plug 'borwe/license-to-vim' " for licenses
 Plug 'Borwe/vim-code-runner' "for running
 Plug 'camspiers/lens.vim' " for window resizing
-"Plug 'wakatime/vim-wakatime' " wakatime
+Plug 'wakatime/vim-wakatime' " wakatime
 
 call plug#end()
 
@@ -237,6 +237,19 @@ nnoremap <Space>b <C-o>
 "Command to fix errors with YCM
 nnoremap fix :YcmCompleter FixIt<CR>
 
+"Setup for code_runner
+let g:CodeRunnerCommandMap ={
+      \'cmake-setup':'mkdir -p build && cd build && cmake ../ -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=1'.
+      \' && cp ./compile_commands.json ../',
+      \'cmake-vcpkg-setup':'mkdir -p build && cd build && cmake ../ -DCMAKE_EXPORT_COMPILE_COMMANDS=1'.
+        \' -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=~/Git-Repos/vcpkg/scripts/buildsystems/vcpkg.cmake'.
+        \' && cp ./compile_commands.json ../',
+      \'cmake-build':'mkdir -p build && cd build && cmake ../ -DCMAKE_BUILD_TYPE=Debug && cmake --build .',
+      \'cmake-clean':'rm -rf build',
+      \'gradle-build':'gradle build',
+      \'gradle-clean':'gradle clean'
+      \}
+
 "Ycm rename things
 function! RenameThingsFunction()
     :echo "Renaming:"
@@ -247,12 +260,6 @@ function! RenameThingsFunction()
     :echo "[Done]"
 endfunction
 command! Rename call RenameThingsFunction()
-
-" for vim-ide-file plugin for cpp cmake_module_path
-let g:ide_cmake_module_path=$HOME."/.local"
-let g:ide_cmake_generator="Ninja"
-let g:ide_cpp_vcvars='vcvars64'
-
 
 "for ycm warning symbal
 let g:syntastic_warning_symbol="$$"
@@ -314,6 +321,10 @@ let g:ycm_language_server =[
 \ {'name':'vala',
 \    'filetypes': ['vala','genie'],
 \    'cmdline': ['vala-language-server']
+\ },
+\ {'name':'rust',
+\    'filetypes': ['rust'],
+\    'cmdline': ['rls']
 \ },
 \ {'name':'groovy',
 \     'cmdline': ['java','-jar',expand(s:lsp . 
