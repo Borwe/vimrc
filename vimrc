@@ -246,8 +246,10 @@ let g:CodeRunnerCommandMap ={
         \' && cp ./compile_commands.json ../',
       \'cmake-build':'mkdir -p build && cd build && cmake ../ -DCMAKE_BUILD_TYPE=Debug && cmake --build .',
       \'cmake-clean':'rm -rf build',
-      \'gradle-build':'gradle build',
-      \'gradle-clean':'gradle clean'
+      \'ng-serve': 'ng serve',
+      \'ng-open': 'ng serve -o',
+      \'gradle-build':'./gradlew build',
+      \'gradle-clean':'./gradlew clean'
       \}
 
 "Ycm rename things
