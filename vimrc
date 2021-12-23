@@ -244,12 +244,17 @@ let g:CodeRunnerCommandMap ={
       \'cmake-vcpkg-setup':'mkdir -p build && cd build && cmake ../ -DCMAKE_EXPORT_COMPILE_COMMANDS=1'.
         \' -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=~/Git-Repos/vcpkg/scripts/buildsystems/vcpkg.cmake'.
         \' && cp ./compile_commands.json ../',
-      \'cmake-build':'mkdir -p build && cd build && cmake ../ -DCMAKE_BUILD_TYPE=Debug && cmake --build .',
+      \'cmake-build':'mkdir -p build && cd build && cmake ../ -DCMAKE_BUILD_TYPE=Debug && cmake --build . && cp compile_commands.json ../',
+      \'cmake-test':'mkdir -p build && cd build && cmake ../ -DCMAKE_BUILD_TYPE=Debug && ctest --output-on-failure && cp compile_commands.json ../',
       \'cmake-clean':'rm -rf build',
       \'ng-serve': 'ng serve',
       \'ng-open': 'ng serve -o',
       \'gradle-build':'./gradlew build',
-      \'gradle-clean':'./gradlew clean'
+      \'gradle-clean':'./gradlew clean',
+      \'cargo-build':'cargo build',
+      \'cargo-clean':'cargo clean',
+      \'cargo-run':'cargo run',
+      \'cargo-test':'cargo test',
       \}
 
 "Ycm rename things
