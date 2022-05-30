@@ -175,7 +175,7 @@ nnoremap vrs+ :resize +5<CR>
 nnoremap vrs- :resize -5<CR>
 
 "Command to show nerdree
-nnoremap ntree :NERDTree<CR>
+nnoremap ntree :NERDTreeToggle<CR>
 
 
 " Source a global configuration file if available
