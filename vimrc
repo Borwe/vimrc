@@ -114,6 +114,7 @@ set shiftwidth=4
 set foldmethod=syntax   " for folding code based on syntax
 set path+=**	" Search down the subfolders
 set wildmenu 	" Display all matching files when we tab complete
+set wildoptions=pum
 set backspace=2 " for allowing deletion with backspace
 set laststatus=2 " always show status line
 
