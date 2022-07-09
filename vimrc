@@ -330,10 +330,6 @@ let g:ycm_language_server =[
 \    'filetypes': ['vala','genie'],
 \    'cmdline': ['vala-language-server']
 \ },
-\ {'name':'rust',
-\    'filetypes': ['rust'],
-\    'cmdline': ['rls']
-\ },
 \ {'name':'groovy',
 \     'cmdline': ['java','-jar',expand(s:lsp . 
 \ '/groovy/groovy-language-server/build/libs/groovy-language-server-all.jar')],
